@@ -3,6 +3,12 @@ slug: /changelog
 title: Changelog
 ---
 
+## [DATE], version [VERSION]
+
+New features & improvements
+
+- Added Czech language support.
+
 ## 2026-10-02, version 3.1.2
 
 New features & improvements

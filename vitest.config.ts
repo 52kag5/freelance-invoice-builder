@@ -12,7 +12,12 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: path.join(rendererRoot, 'setupTests.ts'),
     coverage: {
-      include: ['apps/renderer/src/**', 'apps/desktop/**', 'packages/core/src/**', 'apps/server/**'],
+      include: [
+        'apps/renderer/src/**/*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}',
+        'apps/desktop/**/*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}',
+        'packages/core/src/**/*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}',
+        'apps/server/**/*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}'
+      ],
       exclude: [
         'apps/renderer/src/main.tsx',
         'apps/renderer/src/mocks/**',

@@ -33,6 +33,9 @@ You can customize:
 - Number (amount) formatting
 - Date formatting
 
+The application interface supports English, Lithuanian, French, German, Portuguese, and Czech.
+Invoice and quote PDF languages are selected separately when creating or editing each document.
+
 ![Language and format](images/localization-formatting.jpg)
 
 ## Receipt printing
