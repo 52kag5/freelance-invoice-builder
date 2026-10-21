@@ -14,5 +14,5 @@
     "erasableSyntaxOnly": false,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["main", "preload", "vite.*.config.ts"]
+  "include": ["main", "preload", "__tests__", "vite.*.config.ts"]
 }
