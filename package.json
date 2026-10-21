@@ -108,6 +108,9 @@
     "sqlite3": "^6.0.1"
   },
   "overrides": {
+    "@docusaurus/bundler": {
+      "postcss-selector-parser": "7.1.6"
+    },
     "@docusaurus/core": {
       "tinypool": "2.1.2"
     },
