@@ -120,11 +120,11 @@
       }
     },
     "braces": "npm:@dieub/braces-depth-guard@3.0.3-pn.3",
-    "dompurify": "3.4.16",
+    "dompurify": "3.4.17",
     "exceljs": {
       "uuid": "11.1.1"
     },
-    "uuid": "11.1.1",
+    "uuid@<12": "11.1.1",
     "serialize-javascript": "^7.1.2"
   },
   "devDependencies": {

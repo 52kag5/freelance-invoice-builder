@@ -1,4 +1,4 @@
-FROM node:20-alpine AS builder
+FROM node:24-alpine AS builder
 WORKDIR /app
 
 
@@ -27,7 +27,7 @@ RUN npm run build:renderer
 RUN npm run build:webserver
 RUN npm run build:migrations
 
-FROM node:20-alpine AS runner
+FROM node:24-alpine AS runner
 WORKDIR /app
 
 # nginx serves the static frontend and proxies /api/* to the backend;
