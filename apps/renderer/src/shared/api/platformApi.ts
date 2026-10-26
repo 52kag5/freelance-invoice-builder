@@ -274,6 +274,9 @@ export const webApi = () => {
     getAppVersion: () => apiGet<{ version: string }>('/api/version').then(r => r.version),
 
     checkForUpdates: () => Promise.resolve(),
+    // Updates are managed by the deployment in web mode.
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    onUpdateError: (_callback: () => void) => () => {},
     restartApp: () => {},
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onUpdateProgress: (_callback: (data: ProgressInfo) => void) => () => {

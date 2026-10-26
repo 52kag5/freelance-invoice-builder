@@ -47,6 +47,9 @@ describe('webApi', () => {
     expect(typeof api.onUpdateAvailable(() => {})).toBe('function');
     expect(typeof api.onUpdateNotAvailable(() => {})).toBe('function');
     expect(typeof api.onUpdateDownloaded(() => {})).toBe('function');
+    const onError = vi.fn();
+    expect(() => api.onUpdateError(onError)()).not.toThrow();
+    expect(onError).not.toHaveBeenCalled();
     api.onUpdateProgress(() => {})();
     expect(warnSpy).toHaveBeenCalled();
   });

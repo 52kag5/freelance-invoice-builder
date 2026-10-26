@@ -287,6 +287,7 @@
     "typographyLabels": "Typographie et libellés",
     "unit": "Unité",
     "unitCost": "Coût unitaire",
+    "updateError": "Impossible de rechercher ou d’installer les mises à jour. Veuillez réessayer plus tard.",
     "upiCode": "Code UPI/PIX",
     "upiCodeInvalid": "Saisissez un identifiant UPI valide, un e-mail, un numéro de téléphone international, un CPF ou un UUID",
     "upload": "Téléverser",

@@ -37,3 +37,7 @@ for appimage in "${appimages[@]}"; do
   mv "$work_dir/$filename.zsync" "release/$filename.zsync"
   chmod +x "$appimage"
 done
+
+# Repacking discards electron-builder's appended blockmap and changes the image bytes.
+# Do this last: the manifest and zsync must both describe the published image.
+node scripts/finalize-appimage-metadata.cjs

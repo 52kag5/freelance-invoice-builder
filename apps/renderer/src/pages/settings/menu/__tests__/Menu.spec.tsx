@@ -1,5 +1,5 @@
 import { describe, beforeEach, it, expect, vi } from 'vitest';
-import { act, render } from '@testing-library/react';
+import { act, render, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
@@ -11,13 +11,13 @@ import type { MenuItem, MenuItemMetadata } from '../../../../shared/types/menuIt
 import type { Settings } from '@invoice-builder/contracts';
 
 import { store } from '../../../../state/configureStore';
-import { setSettings } from '../../../../state/pageSlice';
+import { selectUpdateMessage, setSettings } from '../../../../state/pageSlice';
 import { Menu } from '../Menu';
 
 const mocks = vi.hoisted(() => ({
   isWebMode: vi.fn(() => true),
   openUrl: vi.fn(),
-  checkForUpdates: vi.fn(),
+  checkForUpdates: vi.fn().mockResolvedValue(undefined),
   lists: [] as MenuItemMetadata[][]
 }));
 
@@ -56,6 +56,16 @@ const allItems = () => mocks.lists.flatMap(groups => groups.flatMap(group => gro
 const item = (key: string) => allItems().find(entry => entry.text === i18n.t(key)) as MenuItem;
 
 describe('settings Menu', () => {
+  it('replaces checking with a localized message when the check rejects', async () => {
+    mocks.isWebMode.mockReturnValue(false);
+    mocks.checkForUpdates.mockRejectedValueOnce(new Error('IPC unavailable'));
+    renderMenu(<Menu />);
+    const updateItem = item('settingsMenuItems.titles.checkForUpdate');
+    act(() => updateItem.onClick?.(updateItem));
+    await waitFor(() => {
+      expect(selectUpdateMessage(store.getState())).toBe(i18n.t('common.updateError'));
+    });
+  });
   beforeEach(() => {
     vi.clearAllMocks();
     mocks.lists.length = 0;

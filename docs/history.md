@@ -3,6 +3,14 @@ slug: /changelog
 title: Changelog
 ---
 
+## 2026-10-26, version 3.2.1
+
+Bug Fixes
+
+- Fixed Linux updater manifests to match the final repacked AppImage checksum and size, without advertising a discarded embedded blockmap.
+- Added the macOS ZIP archive required for in-app updates alongside the DMG installer.
+- Display localized updater failures instead of leaving update checks or downloads silently stuck.
+
 ## 2026-10-26, version 3.2.0
 
 New features & improvements

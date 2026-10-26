@@ -25,6 +25,11 @@ export const Updater: FC = () => {
 
   useEffect(() => {
     const api = getApi();
+    const unsubError = api.onUpdateError(() => {
+      setShowImportConfirm(false);
+      dispatch(setNewVersion(undefined));
+      dispatch(setUpdateMessage(t('common.updateError')));
+    });
     const unsub1 = api.onUpdateAvailable(() => {
       dispatch(setUpdateMessage(t('common.downloading')));
     });
@@ -40,6 +45,7 @@ export const Updater: FC = () => {
       setShowImportConfirm(true);
     });
     return () => {
+      unsubError();
       unsub1();
       unsub2();
       unsub3();

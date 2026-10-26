@@ -20,6 +20,7 @@ export const IpcChannel = {
   batchAddStyleProfile: 'batch-add-styleProfile',
   batchAddUnit: 'batch-add-unit',
   checkForUpdates: 'check-for-updates',
+  updateError: 'update-error',
   deleteBank: 'delete-bank',
   deleteBusiness: 'delete-business',
   deleteCategory: 'delete-category',

@@ -5,15 +5,27 @@ import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
 import i18n from '../../i18n';
 import { store } from '../../state/configureStore';
-import { setNewVersion, setUpdateMessage, setVersion } from '../../state/pageSlice';
+import {
+  selectNewVersion,
+  selectUpdateMessage,
+  setNewVersion,
+  setUpdateMessage,
+  setVersion
+} from '../../state/pageSlice';
 import { Updater } from '../Updater';
 
 const updaterMocks = vi.hoisted(() => ({
+  onUpdateError: undefined as (() => void) | undefined,
+  unsubscribeError: vi.fn(),
   onUpdateDownloaded: undefined as ((version: string) => void) | undefined
 }));
 
 vi.mock('../../shared/api/restApi', () => ({
   getApi: () => ({
+    onUpdateError: (callback: () => void) => {
+      updaterMocks.onUpdateError = callback;
+      return updaterMocks.unsubscribeError;
+    },
     onUpdateAvailable: () => () => {},
     onUpdateNotAvailable: () => () => {},
     onUpdateProgress: () => () => {},
@@ -38,6 +50,21 @@ describe('Updater', () => {
     store.dispatch(setVersion('2.10.0'));
     store.dispatch(setNewVersion(undefined));
     store.dispatch(setUpdateMessage(undefined));
+  });
+
+  it('shows a localized failure, clears pending installation, and unsubscribes', () => {
+    const { unmount } = render(<Updater />, { wrapper });
+    act(() => updaterMocks.onUpdateDownloaded?.('3.2.1'));
+    act(() => updaterMocks.onUpdateError?.());
+    expect(selectUpdateMessage(store.getState())).toBe(i18n.t('common.updateError'));
+    expect(selectNewVersion(store.getState())).toBeUndefined();
+    expect(
+      screen.queryByText(
+        i18n.t('settingsMenuItems.updateConfirmText', { currentVersion: '2.10.0', newVersion: '3.2.1' })
+      )
+    ).not.toBeInTheDocument();
+    unmount();
+    expect(updaterMocks.unsubscribeError).toHaveBeenCalledOnce();
   });
 
   it('shows the database upgrade warning for version 3.0.2', async () => {

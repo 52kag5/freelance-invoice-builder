@@ -278,7 +278,9 @@ export const Menu: FC<Props> = ({
                 isSelected: false,
                 onClick: () => {
                   dispatch(setUpdateMessage(t('common.checking')));
-                  getApi().checkForUpdates();
+                  void getApi()
+                    .checkForUpdates()
+                    .catch(() => dispatch(setUpdateMessage(t('common.updateError'))));
                 }
               }
             ]

@@ -287,6 +287,7 @@
     "typographyLabels": "Tipografija ir žymės",
     "unit": "Vienetas",
     "unitCost": "Vieneto kaina",
+    "updateError": "Nepavyko patikrinti ar įdiegti atnaujinimų. Bandykite dar kartą vėliau.",
     "upiCode": "UPI/PIX kodas",
     "upiCodeInvalid": "Įveskite galiojantį UPI ID, el. paštą, tarptautinį telefono numerį, CPF arba UUID",
     "upload": "Įkelti",

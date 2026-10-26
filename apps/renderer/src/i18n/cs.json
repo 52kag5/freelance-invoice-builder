@@ -287,6 +287,7 @@
     "typographyLabels": "Typografie a štítky",
     "unit": "Jednotka",
     "unitCost": "Jednotková cena",
+    "updateError": "Aktualizace se nepodařilo vyhledat nebo nainstalovat. Zkuste to prosím později.",
     "upiCode": "Kód UPI/PIX",
     "upiCodeInvalid": "Zadejte platné UPI ID, e-mail, mezinárodní telefonní číslo, CPF nebo UUID",
     "upload": "Nahrát",

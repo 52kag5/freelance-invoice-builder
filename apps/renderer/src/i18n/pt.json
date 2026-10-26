@@ -287,6 +287,7 @@
     "typographyLabels": "Tipografia e rótulos",
     "unit": "Unidade",
     "unitCost": "Custo unitário",
+    "updateError": "Não foi possível procurar ou instalar atualizações. Tente novamente mais tarde.",
     "upiCode": "Código UPI/PIX",
     "upiCodeInvalid": "Insira um ID UPI, e-mail, número de telefone internacional, CPF ou UUID válido",
     "upload": "Carregar",

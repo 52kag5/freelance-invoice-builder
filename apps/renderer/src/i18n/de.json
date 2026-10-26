@@ -287,6 +287,7 @@
     "typographyLabels": "Typografie und Beschriftungen",
     "unit": "Einheit",
     "unitCost": "Stückpreis",
+    "updateError": "Updates konnten nicht gesucht oder installiert werden. Bitte versuchen Sie es später erneut.",
     "upiCode": "UPI/PIX-Code",
     "upiCodeInvalid": "Geben Sie eine gültige UPI-ID, E-Mail, internationale Telefonnummer, CPF oder UUID ein",
     "upload": "Hochladen",

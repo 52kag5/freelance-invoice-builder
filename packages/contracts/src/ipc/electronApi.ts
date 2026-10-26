@@ -28,6 +28,7 @@ export interface ElectronAPI {
   getAppVersion: () => Promise<string>;
 
   checkForUpdates: () => Promise<void>;
+  onUpdateError: (callback: () => void) => () => void;
   restartApp: () => void;
   onUpdateProgress: (callback: (data: ProgressInfo) => void) => () => void;
   onUpdateAvailable: (callback: () => void) => () => void;

@@ -37,8 +37,11 @@ contextBridge.exposeInMainWorld('electronAPI', {
 
   getAppVersion: () => ipcRenderer.invoke(IpcChannel.getAppVersion),
 
-  checkForUpdates: async () => {
-    ipcRenderer.send(IpcChannel.checkForUpdates);
+  checkForUpdates: () => ipcRenderer.invoke(IpcChannel.checkForUpdates),
+  onUpdateError: (callback: () => void) => {
+    const listener = () => callback();
+    ipcRenderer.on(IpcChannel.updateError, listener);
+    return () => ipcRenderer.removeListener(IpcChannel.updateError, listener);
   },
   restartApp: () => ipcRenderer.send(IpcChannel.restartApp),
   onUpdateProgress: (callback: (data: ProgressInfo) => void) => {

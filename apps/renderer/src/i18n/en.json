@@ -287,6 +287,7 @@
     "typographyLabels": "Typography & Labels",
     "unit": "Unit",
     "unitCost": "Unit cost",
+    "updateError": "Unable to check for or install updates. Please try again later.",
     "upiCode": "UPI/PIX code",
     "upiCodeInvalid": "Enter a valid UPI ID, email, international phone number, CPF, or UUID",
     "upload": "Upload",

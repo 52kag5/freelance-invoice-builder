@@ -25,6 +25,12 @@ From this screen you can:
 
 ![Look and feel](images/general-data-management.jpg)
 
+### Desktop updates
+
+Use **Check for updates** to check GitHub Releases. A download shows progress and prompts you to restart when ready. If checking, downloading, or installing fails, the update status shows a localized error; try checking again later.
+
+Linux AppImages use full downloads for in-app updates; the published `.zsync` file is for external AppImageUpdate-compatible tools. DEB updates use the system package manager and may require administrator authorization. macOS releases include a ZIP for the in-app updater as well as the DMG installer. Web/Docker deployments are updated by the administrator, not this control.
+
 ## Localization & Formatting
 
 You can customize:

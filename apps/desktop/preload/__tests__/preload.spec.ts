@@ -40,12 +40,28 @@ describe('preload electronAPI bridge', () => {
     });
 
     expect(ipcRenderer.invoke).toHaveBeenCalled();
-    expect(ipcRenderer.send).toHaveBeenCalledWith('check-for-updates');
+    expect(ipcRenderer.invoke).toHaveBeenCalledWith(IpcChannel.checkForUpdates);
     expect(ipcRenderer.on).toHaveBeenCalled();
     expect(ipcRenderer.invoke).toHaveBeenCalledWith(IpcChannel.initializeDb, {
       fullPath: 'C:\\data\\new.db',
       mode: DBInitType.create,
       dbType: DatabaseType.sqlite
     });
+  });
+
+  it('propagates check rejections and removes the updater error listener', async () => {
+    const api = bridge.api!;
+    const error = new Error('Update check failed');
+    ipcRenderer.invoke.mockRejectedValueOnce(error);
+    await expect(api.checkForUpdates()).rejects.toThrow(error);
+
+    const callback = vi.fn();
+    const subscribe = api.onUpdateError as unknown as (callback: () => void) => () => void;
+    const unsubscribe = subscribe(callback);
+    const listener = ipcRenderer.on.mock.calls.at(-1)?.[1] as () => void;
+    listener();
+    expect(callback).toHaveBeenCalledOnce();
+    unsubscribe();
+    expect(ipcRenderer.removeListener).toHaveBeenCalledWith(IpcChannel.updateError, listener);
   });
 });
